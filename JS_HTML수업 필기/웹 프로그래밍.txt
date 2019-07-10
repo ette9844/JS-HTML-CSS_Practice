@@ -1,0 +1,70 @@
+<웹 프로그래밍>
+
+*World Wide Web = WWW = Web
+web 관리 기관: W3C (비영리기관)
+web 기본 프로토콜: HTTP (요청, 응답, 요청응답 후 연결 끊김: Stateless 프로토콜)
+web 기본 마크업언어: HTML = Hyper Text Markup Language (태그로 구성된 언어: Markup Language)
+web 
+
+        파생된 언어
+SGML -XML	(목적: 데이터의 구조화)
+        -HTML	(목적: 데이터의 표현)
+
+공공데이터포털 API / 카카오 API / 네이버 API 등을 사용할 때 결과가 xml형태로 제공 됨
+
+* HTML5 버전을 사용할 것
+
+* HTML의 역사
+HTML4 - W3C에서 1996 후반에 출시
+XHTML 언어 출시 -> 불편
+전자책 / 이북은 아직도 XHTML이 기준
+
+2000년 이후
+WEB 2.0 	- 브라우저 플랫폼화
+	- 브라우저가 저장소/DB/어플리케이션 등 프로그램을 실행 시킬 수 있는 요소들을 가지고 있음
+	- chrome/firefox/opera등의 브라우저 사업이 활성화 됨
+	- WHATWG (Web Hypertext Application Technology Working Group): 브라우저 기업 모임
+	  :각 브라우저의 사용법(API)을 표준화한 단체
+
+WHATWG의 API를 W3C에서 승인을 해서 만들어진 것 : HTML5
+
+HTML5 - W3C에서 2016년에 표준화
+
+
+
+<웹 브라우저의 구조>
+[사진]
+랜더링: 서버가 보내준 응답을 해석해서 화면에 보여주는 작업
+
+html태그를 만나면? rendering engine이 처리
+css태그를 만나면? rendering engine이 처리
+javascript를 만나면? javascript interpreter가 처리
+
+
+https://ko.wikipedia.org/wiki/%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80_%EC%97%94%EC%A7%84
+KHTML - 웹킷(웹키트) - 블링크 : 같은 맥락
+트라이던트 : 혼자 특이해서 표준화가 잘 안지켜지는 케이스 (IE에서 실행이 잘 안된다는 경고가 뜨는 이유)
+
+브러우저마다 렌더링 엔진이 서로 달라서 크롬과 인터넷익스플로러에서 실행 결과가 다를 수 있음
+-> 이 차이를 최소화 하는것이 좋은 프로그래밍
+
+*웹 표준화를 지킨다: 어떤 브라우저에서 봐도 같은 결과가 나오게끔 프로그래밍 하는 것. 어렵다.
+*웹 접근성을 높인다: 데스크탑 웹 브라우저에서도, 스마트 티비에서도, 모바일 브라우저에서도 결과를 출력할 수 있게끔 하라 / 확대, 축소해도 레이아웃이 깨지지 않고 잘 출력되게끔 해라
+
+-> 웹 접근성 높이기 : 반응형 웹페이지를 만들 수 있어야 함
+
+*네트워크에 연결되어 있지 않아도 웹 브라우저만 있으면 로컬 html과 응답/요청을 주고받고 결과를 출력할 수 있다.  = ex.스마트 티비 브라우저
+
+<html>
+https://www.w3schools.com/html/default.asp
+
+모든 태그는 소문자로 적는 것이 관습
+
+start tag = <html>
+사이의 내용 = element body
+end tag = </html>
+
+start tag ~ end tag = element
+tag의 역할: content를 어떻게 표현할 것인가
+
+HTML consists of a series of elements: 계층형으로 이루어져있다

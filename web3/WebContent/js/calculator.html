@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculator</title>
+<script>
+// dom 트리 완성까지 기다린다 = load 이벤트를 감지한다
+window.addEventListener("load", function(){
+	// id 속성값이 "~"인 버튼 객체를 DOM에서 찾기
+	var plusObj = document.querySelector("#plus");
+	var minusObj = document.querySelector("#minus");
+	var divObj = document.querySelector("div");
+	
+	// plus 객체 클릭이벤트 감시
+	plusObj.addEventListener("click", function(){
+		var a = parseInt(document.querySelector("#a").value);
+		var b = parseInt(document.querySelector("#b").value);
+		
+		// 입력값이 부족할 경우
+		if(isNaN(a) || isNaN(b))
+			alert("두 값 모두 입력해 주세요.");
+		else {
+			// 클릭되면 div에 계산결과 출력
+			// ex) divObj.innerHTML = 계산결과값;
+			divObj.innerHTML = a+b;
+		}
+	});
+	
+	// minus 객체 클릭이벤트 감시
+	minusObj.addEventListener("click", function(){
+		var a = parseInt(document.querySelector("#a").value);
+		var b = parseInt(document.querySelector("#b").value);
+		
+		// 입력값이 부족할 경우
+		if(isNaN(a) || isNaN(b))
+			alert("두 값 모두 입력해 주세요.");
+		else {
+			// 클릭되면 div에 계산결과 출력
+			// ex) divObj.innerHTML = 계산결과값;
+			divObj.innerHTML = a-b;
+		}
+	});
+});
+</script>
+</head>
+<body>
+	<input type="number" id="a">
+	<br>
+	<input type="number" id="b">
+	<br>
+	<button id="plus">+</button>
+	<button id="minus">-</button>
+	<div>결과: </div>
+</body>
+</html>

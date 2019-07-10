@@ -1,0 +1,146 @@
+<!--C:\Users\Administrator\Desktop\myHTML\first.html-->
+<!DOCTYPE html> <!--html5 문서 유형: 없어도 실행은 되나, 웹 표준화 검증기를 통해 확인해 볼때 필요함-->
+
+<html>
+<head>
+<title>Page Title</title>   <!--화면에 보여질 내용은 태그 안에-->
+<style>/*스타일 내부에서 comment를 줄때는 이런식으로*/
+    /*a { text-decoration: none; }*/
+    #aNaver { text-decoration: none; }  /*id속성값이 aNaver인 태그의 style*/
+    #aNaver:hover { color: red; text-decoration: underline; }    /*마우스가 올라갔을 때:hover*/
+
+    /*#aNaver:visited { color: pink; }  // 한번이라도 방문했을 경우*/
+    table { margin-left: 50px; margin-bottom: 70px; }
+    table, th, td { border: 1px solid; border-collapse: collapse; /*겹치는 부분의 테두리를 하나로*/} 
+
+    /*부모>자식*/
+    /*table>tbody>tr:nth-child(2) { background-color: gray; }     /*tbody가 렌더링 과정에서 자동으로 추가 되기 때문에 실행이 안됨*/
+    
+    /*조상 후손*/
+    table tr:nth-child(2) { background-color: gray; }
+    table td:nth-child(3) { color: red; }   /*tr선택자를 찾을 때, 후손 선택자를 사용하는 이유*/
+
+</style>
+</head>
+<body style="background-color:powderblue;"> 
+<a href="#p1">목록</a>  <!--북마크: id속성값이 p1인 태그의 위치로 이동-->
+<hr>
+<!--속성이름 : 속성값-->
+<!--property is a CSS property : The value is a CSS value.-->
+
+<!--자동줄바꿈이 되는 태그-->
+<h1>My First Heading</h1>   <!--제목 태그-->
+
+<!--style 속성을 이용해서 스타일을 변경할 수 있다-->
+<!--property간을 구분할때에는 세미콜론(;)-->
+<h1 style="font-size:60px;font-family:verdana;text-align:center;width:500px;border:1px solid;">Heading 1</h1>
+<!--center: h1태그에 할당된 넓이의 중앙 / 
+    넓이를 지정하지 않으면 웹 브라우저의 가로 넓이만큼이 해당 태그의 넓이가 됨-->
+<!--border 테두리 margin 여백-->
+
+<h2>H2</h2>
+<h6>H6</h6>
+<p>My first paragraph.</p>  <!--단락 태그-->
+<p>This is another paragraph.</p>
+
+<!--자동줄바꿈이 안되는 태그-->
+<a href="https://www.w3schools.com">This is a link</a>  <!--링크 태그 a 태그-->
+<br>    <!--줄바꿈 태그: line break tag-->
+        <!--/end tag가 없다: end tag를 쓰면 안됨-->
+<a href="https://www.naver.com" id="aNaver">네이버</a>
+<hr>    <!--수평선 태그-->
+
+<!--img: end tag가 없다-->
+<img    
+    src="w3schools.jpg" 
+    alt="W3Schools.com"
+    width="104" 
+    height="142">
+<!--alt 속성: 이미지가 없을 때에 보이는 속성-->
+<!--웹 표준화를 지키기 위해 필요한 속성: 그림 설명을 기술-->
+
+<img
+    src="https://www.w3schools.com/html/w3schools.jpg"
+    alt="W3Schools.com"
+    width="104" 
+    height="142">
+<!--단위가 설정 되어있지않으면 pixel 단위-->
+
+<img    
+    src="images/w3schools.jpg" 
+    alt="W3Schools.com"
+    width="52" 
+    height="71">
+    
+<img    
+    src="images/w3schools.jpg" 
+    alt="W3Schools.com">
+<!--width/height를 설정하지 않으면 원본 크기로-->
+
+<hr>
+<button>Click me</button>
+<!--button의 클릭이벤트를 js로 작성해 줘야함-->
+<hr>
+
+<!--순서가 없는 목록-->
+<p id="p1">
+<ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ul>
+</p>
+
+<!--순서를 갖는 목록-->
+<p id="p2">
+<ol>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ol>
+</p>
+
+<hr>
+<!--테이블 태그의 부모 = body태그의 넓이의 50%-->
+<table style="width:50%;">
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th> 
+        <th>Age</th>
+    </tr>
+    <tr>
+        <!--셀 합치기-->
+        <td colspan="2">Jill Smith</td> 
+        <td>50</td>
+    </tr>
+    <tr>
+        <td>Eve</td>
+        <td>Jackson</td> 
+        <td>94</td>
+    </tr>
+    <tr>
+        <td rowspan="2">Steven</td>
+        <td rowspan="2">King</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>33</td>
+    </tr>
+/table>
+
+</body>
+</html>
+
+<!--<b><i><strong>태그는 이제 안씀
+    style속성값으로 대체-->
+
+
+<!--inline CSS: 해당 태그에 style 속성을 적어주는 형태
+    internal CSS: style 태그를 사용해 속성을 미리 적어두는 형태
+    external CSS: link 태그를 사용해 외부 파일을 사용할 수 있도록 함-->
+
+<!--attribute   : 소프트웨어 적인 개념이 강함
+    property    : 하드웨어 적인 개념이 강함, 서버의 환경을 바꾼다 = system property를 바꾼다
+                  객체의 속성 = 객체의 property-->
+
+                  

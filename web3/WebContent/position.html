@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>position.html</title>
+</head>
+<body>
+
+<!-- inline style 지정법 -->
+<div style="background-color: gray; width: 300px; height: 700px;
+			position: absolute;
+			top: 50px;
+			left: 170px;">
+  <div style="background-color: red; width: 100px; height: 100px;
+  			  float: right;"></div>
+  <div style="background-color: green; width: 100px; height: 100px;
+  			  float: left;"></div>
+  <div style="background-color: blue; width: 100px; height: 100px;
+  			  /*float: left;*/
+  			  clear: left;
+  			  position: absolute;	/*절대 위치 지정: 좌표(top, left, bottom, right) 지정 필수*/
+  			  top: 350px;			/*부모 요소를 기준삼아 절대 위치*/
+  			  left: 50px;"></div>
+</div>
+</body>
+</html>

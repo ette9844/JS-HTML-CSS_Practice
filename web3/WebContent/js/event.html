@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- html 태그를 객체화해 트리구조로 관리 : DOM -->
+<!-- 렌더링 엔진에서 읽어온 HTML페이지의 내용을 트리구조 도큐멘테이션 형태로 기억시켜놓고 (DOM 트리화)
+	자바스크립트 인터프리터에서 필요할 때 찾아간다. -->
+<!-- DOM: Data Object Model -->
+<script type="text/javascript">
+	var play = function() {
+		// querySelector = 한 개의 객체만 가져오는 메서드
+		// querySelectorAll = 여러 개의 객체를 가져오는 메서드, 배열타입을 반환
+
+		// 1) 임의의 숫자 발생
+		var com = parseInt(Math.random() * 3 + 1);
+
+		// 2) 사용자의 입력값 가져오기
+		// 배열 선언시 대괄호 사용 X
+		var arr = document.querySelectorAll("input");
+		var client;
+		
+		for (var i = 0; i < arr.length; i++) {
+			var rObj = arr[i];
+			if (rObj.checked) {
+				// radio 버튼이 선택된 경우
+				// value property의 값은 무조건 string 타입
+				client = rObj.value;
+				break;
+			}
+		}
+		
+		// JS의 특징: 반복문에 선언한 i변수가 반복문 밖에서도 살아있음
+		// BUT 함수에서 선언해 놓은 변수는 그 함수에서밖에 사용 못함
+		if (i == arr.length) {
+			// radio 버튼이 하나도 선택되지 않은 경우
+			alert("가위 바위 보를 선택하세요.");
+		} else {
+			
+			// 3) 승패 결정 후 콘솔 및 alert창으로 출력
+			var gbb = [ '가위', '바위', '보' ];
+			var msg = "컴퓨터: " + gbb[com - 1] +"\n";
+			msg += "사용자: " + gbb[parseInt(client) - 1] + "\n";
+			
+			var result = (com - client + 2) % 3;
+			// 0-client lose / 1-client win / 2-draw
+			switch (result) {
+				case 0: msg += "승패: 사용자 패배"; break;
+				case 1: msg += "승패: 사용자 승리"; break;
+				case 2: msg += "승패: 무승부"; break;
+			}
+			alert(msg);
+			console.log(msg);
+			console.log("---------------------------"); // 구분자
+		}
+	};
+	
+	var init = function() {
+
+		//dom에 접근해서 input 객체 찾기 (Element Node)
+		var inputObj = document.querySelector("input");
+		// 객체의 value property값  얻기 (Attribute Node)
+		var value = inputObj.value
+		console.log("첫번째 input객체의 value 프로퍼티값: " + value);
+
+		// Text Node: <button>실행</button>에서의 '실행'
+
+		/*				name	value
+		Element Node	o		x
+		Attribute Node	o		o
+		Text Node		x		o
+		 */
+
+		// dom에 접근해서 button 객체 찾기
+		var buttonObj = document.querySelector("button");
+		console.log(buttonObj);
+		// 버튼 객체에서 click 이벤트가 발생할 것을 감지
+		buttonObj.addEventListener("click", play);
+	};
+	/*버튼 타입 객체는 아직 DOM tree에 들어가지 않았기 때문에 스크립트에서 버튼 타입에 접근할 수 없다
+	    유지보수성을 높이기 위해 head태그 안쪽에 script를 작성하는 것이 보편적
+	  DOM트리가 완성될 때까지 javascript진행을 기다리게 하면 된다.*/
+
+	/*화면 clear -> 화면에 보여주기 : 렌더링(load event)*/
+	/*javascript의 내장 함수 Window.addEventListener를 통해서 load event를 감시할 수 있다*/
+	window.addEventListener("load", init);	// init():함수호출 X init:함수인자전달 O
+</script>
+</head>
+<body>
+	<!-- 서버로 보내는 것이 아니라면 form태그를 사용할 필요  x -->
+	<input type="radio" name="r" value="1">가위
+	<br>
+	<input type="radio" name="r" value="2">바위
+	<br>
+	<input type="radio" name="r" value="3">보
+	<br>
+	<button>실행</button>
+	<!-- javascript로 이벤트 처리 -->
+	<script type="text/javascript">
+		/*여기에서는 스크립트가 버튼 타입에 접근 가능
+		  but 유지보수가 까다롭다 */
+	</script>
+</body>
+</html>

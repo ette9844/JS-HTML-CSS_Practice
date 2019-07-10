@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- eur-kr: 무조건 2바이트
+	 utf-8: 영문/숫자는 1바이트 한글은 최대 3바이트 -> 영문이 많은 자료에는 utf-8 효율적 -->
+	 
+<!-- dynamic web project 라면 tomcat 서버 > 우클 > Add and Remove로 배포  > Tomcat서버 restart -->
+<!-- http://localhost:8080/web2d/second.html -->
+<title>Insert title here</title>
+</head>
+<body>
+<!-- ctrl + space : eclipse tooltip -->
+<ul style="list-style-type: square;">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<!-- 한번 배포된 프로젝트는 또 배포할  필요 없음: 저장하면 알아서 배포됨 -->
+<ul style="list-style-type: none; padding-left: 10px;">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<dl>
+  <dt>Coffee</dt>
+  <dd>- black hot drink</dd>
+  <dt>Milk</dt>
+  <dd>- white cold drink</dd>
+</dl>
+
+<hr>
+<!-- Menu를 만들때 보통 ul ol태그를 활용하여 작성 -->
+<!-- Horizental list -->
+
+<!-- block 요소: 영역(크기)을 조절할 수 있다. 자동 줄바꿈 된다. 
+	ex) h1~h6, p, ul, ol, li, dl, dt, dd (목록 관련 태그는 모두 블럭 요소)
+		table, tr, (td 태그는 자동줄바꿈이 안되는 셀에 관련된 요소)
+		div(영역을 구분짓는 태그:대표 블럭 요소 태그) -->
+		
+<!-- 		
+<div style="background-color: maroon; width: 200px;
+			margin-top: 10px;
+			margin-right: 20px;
+			margin-bottom: 30px;
+			margin-left: 40px;">
+	DIV1
+</div>	<!-- 자동 줄바꿈 
+<div style="background-color: maroon; width: 200px;
+			margin: 10px 20px 30px 40px"> 시계 방향으로 마진 설정 -->
+<div style="background-color: maroon; width: 200px;
+			margin: 10px 20px;">	<!-- margin: 상하 좌우 -->
+	DIV1
+</div>	<!-- 자동 줄바꿈 -->
+<div style="background-color: maroon; width: 200px;">
+	DIV2
+</div>	
+
+
+<!-- inline 요소: 영역을 조절할 수 없다. 자동 줄바꿈 안된다. 상하 마진이 적용되지 않는다.
+	ex) span -->
+	
+<!-- div같은 영역 분리 태그, 자동으로 크기가 늘어남, width를 설정해도 적용x -->
+<span style="background-color: green;width: 200px;
+			margin: 10px 20px;">
+	SPAN1
+</span>	<!-- 자동 줄바꿈 안 됨 -->
+<span style="background-color: green;width: 200px;">
+	SPAN2
+</span>
+
+
+<!-- block 요소를 inline 요소로 바꿔주고 싶을 때 : display property -->
+<div style="background-color: yellow; width: 200px; margin: 10px 20px;
+			display: inline;">
+	display:inline			
+</div>
+
+<!-- 화면에서 안보이게 하기 -->
+<div style="display: none;">
+	display:none
+</div>
+
+
+<!-- inline block 요소: 영역(크기)조절을 할 수 있다. 그러나 자동 줄바꿈은 안된다. 
+	ex) img -->
+	
+<img alt="" src="images/w3schools.jpg"
+			width="100" height="100"
+			style="display:block">
+<!-- inline block요소에 display property로 block 요소로 바꾸어 자동 줄바꿈 되게 함 -->
+
+<img alt="" src="images/w3schools.jpg"
+			width="100" height="100">
+
+</body>
+</html>

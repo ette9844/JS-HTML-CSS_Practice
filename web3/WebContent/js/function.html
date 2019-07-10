@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>function.html</title>
+<script>
+var f;
+f = function(){
+  console.log("함수입니다!");
+};
+console.log(f);	 // f함수 내용이 그대로 출력
+f();
+
+f = function(p) {
+  console.log("매개변수 p=" + p);
+	
+  // p매개변수의 자료형이 function 타입인 경우 함수를 호출
+  if(typeof(p) == "function")
+    p();
+};
+
+f(10);
+f("Hello");
+f(true);
+f(function(){
+  for(var i=0; i<10; i++) {
+    console.log(i);
+  }
+});
+
+var f1 = function(){
+  for(var i=0; i<10; i++) {
+    console.log(i);
+  }
+};
+f(f1);
+
+// JS의 특징: 인자의 개수와 매개변수의 개수가 일치하지 않아도 된다
+var f2 = function(p1, p2) {
+	var result = p1 + p2;
+	console.log(result);
+};
+f2(3,4);	// 7
+f2(3);		// 3+undefined = NaN
+f2(3,4,5);	// 7
+f2();		// undefined+undefined = NaN
+
+// 함수 즉시 호출: 재사용 안하고 한번만 사용할 함수 등..
+(function(){ 
+	console.log("end...."); 
+})();
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML form</title>
+</head>
+<body>
+
+	<h2>HTML의 다양한 input type</h2>
+	<form action="http://192.168.30.102:8080/web2d/second.jsp">
+		<input><br>
+		<!-- input = inline block 요소: 자동 줄바꿈 x -->
+		<input type="text" name="t" value="hello"><br>
+		<!-- default값은 text -->
+		<input type="password" name="p"><br>
+		<!-- 입력받은 값이 가려짐 -->
+
+		<!-- 다중 선택 체크박스 -->
+		<input type="checkbox" name="c" value="c1"> ONE
+		&nbsp;&nbsp;&nbsp;
+		<!-- &nbsp; 공백을 한 칸 띄운다 -->
+		<input type="checkbox" checked name="c" value="c2"> TWO <br>
+		<!-- 자동 선택 되어있음 -->
+		<!-- checked ="checked"처럼 속성명과 속성값이 같을 때는 속성명만 적어줘도 된다 -->
+
+		<!-- 단일 선택만 가능한 체크박스(radio) -->
+		<!-- 네임 속성이 같아야 같은 네임들에 대해 단일 선택 할 수 있다 -->
+		<input type="radio" name="r" value="r1"> ONE
+		&nbsp;&nbsp;&nbsp; <input type="radio" name="r" value="r2">
+		TWO <br>
+
+		<!-- type="hidden": 화면에 보이지 않게 하는 property -->
+		<!-- 서버로 같이 전송해야하지만 보여주고 싶지 않은 항목에서 사용 -->
+		<input type="hidden" name="h" value="h1">
+
+		<!-- drop down list -->
+		<select name="s">
+			<option>A</option>
+			<option selected>B</option>
+			<!-- 특정 옵션값이 화면에 보이게 하는 property -->
+		</select><br>
+
+		<!-- textarea: 여러 줄 입력을 가능하게 하는 입력란  -->
+		<textarea name="ta" rows="3" cols="10">Hello! Welcome!</textarea>
+		<br>
+
+		<!-- 특수 버튼 submit -->
+		<!-- form태그에 쓰여있는 url을 서버에 요청하는 버튼 -->
+		<!-- name속성이 있는 요소들만 서버로 같이 전송된다 
+		select에서 A를 선택했다면 "s"=A 같이 맵핑되어 전송된다 -->
+		<!-- default는 주소창에 쓰여있는 url -->
+		<input type="submit" value="전송"> &nbsp;
+
+		<!-- 일반 버튼 -->
+		<input type="button" value="클릭">
+	</form>
+
+	<hr>
+
+	<div>
+		<h2>HTML5에 추가된 input type 속성들</h2>
+		<form>
+			<input type="search" value="검색..."><br>
+			<!-- step: n씩 증가하게 설정 -->
+			<input type="number" value="1" min="1" max="10" step="2"><br>
+			<input type="email" value="a@b.com"><br> <input
+				type="date"><br> <input type="range"><br>
+			<input type="tel"><br>
+
+			<!-- number, email, tel 등은 모바일 디바이스에서 편의성에 맞게 자판이 변경됨 -->
+			<!-- PC에서는 일반 input과 별 차이 없음 -->
+		</form>
+	</div>
+
+	<hr>
+
+	<div>
+		<h2>HTML5에 추가된 속성들</h2>
+		<form>
+			<input readonly value="읽기전용"><br>
+			<!-- name속성을 설정해 줘야 서버에 자료가 남아 autocomplete를 사용할 수 있다 -->
+			<input name="a" autocomplete="off"><br>
+			<!-- 자동 완성 기능 해제  (디폴트값은 on)
+			자동 완성 기능은 보안상 좋지 않기 때문에 카드번호, 비밀번호 등 보안이 중요한  항목에 대해서는 off해주는 것이 좋다 -->
+			<input autofocus><br> <input placeholder="힌트입니다"><br>
+			<input placeholder="반드시 입력하세요!" required><br> <input
+				type="submit" value="전송">
+		</form>
+	</div>
+
+	<hr>
+
+	<div>
+		<h2>버튼들</h2>
+		<form>
+			<input><br> <input type="submit" value="전송"><br>
+			<input type="button" value="클릭"><br>
+			<button>버튼1</button>
+			<!-- form태그 안쪽	 button: submit button과 같은 효과 -->
+		</form>
+		<button>버튼2</button>
+		<!-- form태그 바깥쪽 button: 일반 버튼 효과 -->
+	</div>
+</body>
+</html>

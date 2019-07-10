@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js/variable.html</title>
+<script>
+var a;
+a=1;
+
+// var 예약어를 붙이지 않고도 변수를 선언할 수 있으나 의미가 다름
+b=2;
+console.log(a + ", " + b);
+// 스크립트 내부에 변수 선언 = window 객체 내부에 변수 선언
+console.log(window.a + ", " + window.b);
+
+// outer function
+var c = function(){
+	var lv = 3;	// 함수 내의 지역변수로 선언 (메모리에 좋다)
+	d = 4;		// 함수 바깥 scope(window 객체 scope)에 선언
+	// 함수 내에서는 함수 밖에서 선언된 변수를 사용할 수 있다
+	console.log("in function: a+b=" + (a+b));
+	console.log("in function: d=" + d);
+	console.log("in function: " + lv);	// 3
+	
+	// inner function
+	var e = function(){
+		var lv2 = 5;
+		f = 6;
+		// outer function의 변수 사용 가능
+		console.log("in inner function: lv+lv2=" + (lv+lv2));
+	};
+	e();
+	// inner function에서 var 없이 선언한 변수는 outer function에서 사용 가능
+	console.log("in function: f=" + f);
+};
+c();
+
+// 함수 밖에서는 함수 내에서 선언된 변수를 사용할 수 없다
+// console.log("out function: " + lv);		// error
+
+// window 객체 scope에 선언된 변수는 함수 밖에서도 접근 가능
+console.log("out function: d=" + d + "," + window.d);
+console.log("out function: f=" + f + "," + window.f);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

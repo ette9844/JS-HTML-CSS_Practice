@@ -1,0 +1,59 @@
+CSS (Cascading Style Sheets):
+	CSS describes how HTML elements are to be displayed on screen, paper, or in other media.
+	표현에 관련된 효과
+
+	-inline	: <태그이름 style="~~~">
+	-internal	: <style> 선택자{ 프로퍼티명: 값; ... } </style>
+	-external	: 외부 CSS 파일 사용
+
+	inline보다는 internal style 표기법을 권장함
+	이 둘을 섞어 쓰면 유지보수가 힘듬 -> 하나로 통일!
+
+
+JAVA	 - 객체지향언어
+	 - 컴파일러 언어  : 실행 전에 기계어로 바꿔주는 컴파일을 하는 언어
+
+JavaScript - 객체기반언어, 웹 브라우저의 내부에 있는 자바스크립트 인터프리터(해석기)에 의해 실행
+	 - 인터프리터 언어: 실행 시에 기계어로 바꾸는 작업을 하는 언어
+			 오류가 있어도 실행기 되기 때문에 예상치 못한 결과값이 나오기도 함
+
+JavaScript: 
+	JavaScript makes HTML pages more dynamic and interactive.
+	동적(이벤트 처리)에 관련된 효과
+
+*주석:
+html <!-- -->
+css /* */
+js // /* */
+
+
+*HTML file path
+<img src="picture.jpg">
+	a
+		test.html
+		picture.jpg
+같은 디렉토리에 picture.jpg 존재
+
+<img src="images/picture.jpg">
+a 디렉토리에 images 폴더 내에 picture.jpg가 존재
+
+<img src="/images/picture.jpg">
+/부터 시작 하는 경로는 web context 자체가 다름, root 폴더만 같음
+
+<img src="../picture.jpg">
+절대 경로
+
+
+*HTML head
+<link>: css연결할 때 사용
+<meta>: 한글이 깨질 경우 mata 태그를 통해 명시적으로 file의 인코딩을 utf-8로 설정해준다
+	엔드 태그 없음
+	<meta charset="UTF-8">
+
+          : 서칭이 쉽게 되도록 키워드를 설정 할 때 사용
+	<meta name="keywords" content="HTML, CSS, XML, JavaScript">
+
+          : n초 마다 새로고침 되도록 설정 할 때 사용
+	<meta http-equiv="refresh" content="30">
+
+*HTML 파일 읽을 때에는 body부터 읽어라
