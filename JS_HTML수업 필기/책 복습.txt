@@ -1,0 +1,65 @@
+<style>
+  .highlight { background-color: yellow;
+	    color: blue;
+	    font-weight: bold; }
+</style>
+
+<span class="highlight">우수</span>
+
+
+div.a li : div 후손 li모두 선택 (3개)
+div.a>li: error div 직계 자식인 li요소가 없음 (0개)
+div.a>ul>li (2개)
+div + ul: div앞에있는 ul노드 (형제 노드에서 쓰이는 표기법)
+
+<div class = "a">
+    <ul>
+        <li>
+        <li>
+    </ul>
+    <div>
+        <ol>
+            <li>
+
+---------------------------------------------
+
+*[]: attribute selector
+input[type] ==> 3
+div[style] ==>1 
+input[type="text"]	==> type속성인 text인 것들
+
+<input type="text" name="a">
+<input type="text" name="b">
+<input type="checkbox" name="c" value="c1">
+<select name="c">
+
+---------------------------------------------
+
+p57
+var a= 123;	//number 타입
+var b = new Number(123);
+
+var s = "hello";
+var s1 = new String('hello');
+
+---------------------------------------------
+
+p62
+strObject.substr(0, 4);
+
+SQL: substr = 
+JavaScript: substr 
+
+JAVA: substring = 
+JavaScript: substring
+
+---------------------------------------------
+
+p63
+var b = true;
+var b1 = new Boolean(true);
+
+---------------------------------------------
+
+p94
+Number("10.3") -> 10.3
