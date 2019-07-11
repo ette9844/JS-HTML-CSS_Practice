@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js/window.html</title>
+<script>
+//DOM 트리가 구성될 때까지 기다린다: window객체의 load이벤트 감시
+window.addEventListener("load", function(){
+	var windowId;
+    var btObj1 = document.querySelector("button:nth-child(1)");
+    
+    btObj1.addEventListener("click", function(){
+        // window.open();		// 비어있는 새창 띄우기
+        var url = "http://localhost:8080";		// 새창의 url 지정
+        var name = 'one';		// 동일한 창은 한개의 창만 유지되도록 함
+        var spec = 'width=200px, height=200px';	// 새창의 크기 지정
+        windowId = window.open(url, name, spec);
+    });
+    
+ 	// querySelector무조건 첫번째 객체를 찾아냄:새창띄우기 버튼
+ 	// 두 버튼을 구분하기 위해  :nth-child(i)를 사용
+    var btObj2 = document.querySelector("button:nth-child(2)");
+    btObj2.addEventListener("click", function(){
+    	windowId.close();
+    });
+    
+    // 세번째 버튼이 클릭되었을때
+   	var intervalId;
+    var btObj3 = document.querySelector("button:nth-child(3)");
+    btObj3.addEventListener("click", function(){
+    	var time = 1000;	// ms 단위 = 1초
+    	// dom에서 div객체 찾기
+    	var divObj = document.querySelector("div");
+    	
+    	// 인자로 전달되는 함수: 콜백 함수
+    	intervalId = window.setInterval(function(){
+    		// 현재 시각 정보 가져오기
+    		var now = new Date();
+    		var y = now.getFullYear();
+    		var m = now.getMonth() + 1;
+    		var d = now.getDate();
+    		var h = now.getHours();
+    		var mi = now.getMinutes();
+    		var s = now.getSeconds();
+    		
+    		divObj.innerHTML = y+"년 "+m+"월 "+d+"일 "+h+":"+mi+":"+s;
+    	}, time);	// 인터벌 실행: time초 단위로 function실행
+    });
+    
+    var btObj4 = document.querySelector("button:nth-child(4)");
+    btObj4.addEventListener("click", function(){
+        // 인터벌 중지
+    	window.clearInterval(intervalId);
+    });
+    
+    var btObj5 = document.querySelector("button:nth-child(5)");
+    btObj5.addEventListener("click", function(){
+    	var time = 1000*10; // 10초
+        // window.setTimeout(function(){
+       	setTimeout(function(){
+        	console.log("버튼 클릭후 10초 경과")
+        }, time);
+    });
+});
+
+// window는 js에 내장되어있는 최상위 객체이기 때문에 window.표현 생략 가능
+</script>
+</head>
+<body>
+<button>새창띄우기</button>
+<button>새창닫기</button>
+<button>타이머간격처리</button>
+<!-- 여러번 작업 -->
+<button>타이머간격중지(setInterval)</button>
+<!-- 이렂ㅇ 시간 이후 한번만 작업 -->
+<button>타이머실행(setTimer)</button>
+<div>
+</div>
+</body>
+</html>

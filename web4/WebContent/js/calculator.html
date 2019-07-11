@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Calculator</title>
+<style>
+  button {
+    width: 33%;
+    height: 50px;
+  }
+  
+  input {
+  	width:99%; 
+  	height:30px; 
+  	text-align: right; 
+  	font-size: 20px;
+  	margin-bottom: 20px;
+  }
+</style>
+<script>
+// dom 트리가 완성될때까지 기다린다. load 이벤트 감시
+window.addEventListener("load", function(){
+	// dom에서 버튼 객체 찾기
+	var inputObj = document.querySelector("input");
+	var btArr = document.querySelectorAll("div.nums>button");
+	
+	// clear function
+	var clear = function(){
+		inputObj.value = "0";
+	};
+	
+	for(var i=0; i<btArr.length; i++){
+		// 변수의 scope을 달리하기 위해 각각 함수 내의 변수로 바꿔준다
+		// i와 j의 연관을 끊어주기 위해 매개변수로 전달, 둘은 별개의 값이 되었음
+		(function(j){
+			var btNumObj = btArr[j];	// btNumObj가 최종적으로 0버튼으로 덮어씌워짐
+			btNumObj.addEventListener("click", function(){
+				if(inputObj.value=='0' || inputObj.length==0)
+					inputObj.value = btNumObj.innerHTML;
+				else
+					inputObj.value += btNumObj.innerHTML;
+			});
+		})(i);	// 선언과 함께 호출
+	}
+	
+	// operation buttons
+	var plusObj = document.querySelector("#plus");
+	var minusObj = document.querySelector("#minus");
+	var equalObj = document.querySelector("#equal");
+	var clearObj = document.querySelector("#clear");
+	
+	var inputA;
+	var inputB;
+	var mode;
+	
+	// plus 버튼 클릭 이벤트
+	plusObj.addEventListener("click", function(){
+		// 입력 값 저장
+		inputA = parseInt(inputObj.value);
+		console.log("입력1: "+inputA);
+		
+		mode = "plus";
+		clear();
+	});
+	
+	// minus 버튼 클릭 이벤트
+	minusObj.addEventListener("click", function(){
+		// 입력 값 저장
+		inputA = parseInt(inputObj.value);
+		console.log("입력1: "+inputA);
+		
+		mode = "minus";
+		clear();
+	});
+	
+	// equal 버튼 클릭 이벤트
+	equalObj.addEventListener("click", function(){
+		// 입력 값 저장
+		inputB = parseInt(inputObj.value);
+		
+		// 연산 실행
+		var result;
+		switch(mode) {
+		case "plus":
+			result = inputA + inputB;
+			break;
+		case "minus":
+			result = inputA - inputB;
+			break;
+		}
+		
+		// 입력값이 부족할 경우
+		if(isNaN(result))
+			alert("두 값 모두 입력해 주세요.");
+		else {
+			// 클릭되면 div에 계산결과 출력
+			inputObj.value = result;
+			console.log("입력2: "+inputB);
+			console.log("결과: "+result);
+			// inputA, B 초기화
+			inputA = undefined;
+			inputB = undefined;
+		}
+	});
+	
+	// clear 버튼 클릭 이벤트
+	clearObj.addEventListener("click", function(){
+		clear();
+		inputA = undefined;
+		inputB = undefined;
+		mode = undefined;
+	});
+});
+</script>
+</head>
+<body style="margin:20px">
+<div style="width:60%;">
+  <input type="text"><br>
+  <div class="nums">
+    <button>1</button><button>2</button><button>3</button><br>
+    <button>4</button><button>5</button><button>6</button><br>
+    <button>7</button><button>8</button><button>9</button><br>
+    <button>0</button><br>
+  </div><br>
+  <button id="plus" >+</button><!-- 
+--><button id="minus">-</button><!-- 
+--><button id="equal">=</button><!-- 
+--><button id="clear">C</button><!-- -->
+</div>
+
+</body>
+</html>
