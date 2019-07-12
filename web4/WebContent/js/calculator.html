@@ -20,14 +20,65 @@
 <script>
 // dom 트리가 완성될때까지 기다린다. load 이벤트 감시
 window.addEventListener("load", function(){
+	
+	// inputA mode(연산자) inputB
+	var inputA;
+	var inputB;
+	var mode;
+	
 	// dom에서 버튼 객체 찾기
 	var inputObj = document.querySelector("input");
 	var btArr = document.querySelectorAll("div.nums>button");
+	var historyObj = document.querySelector("#history");
 	
+	// calculate the result and print it out
+	function calculate(){
+		// A 연산자 B 입력 후 다시 연산자 입력시 = A값이 undefined가 아닐때
+		if(!isNaN(inputA + 0)){
+			// 입력 값 저장
+			inputB = Number(inputObj.value);
+			// 중간 계산 결과를 계산 
+			var tmp = operate(inputA, inputB);
+			// inputA에 대입, inputB 초기화
+			inputA = tmp;
+			inputB = undefined;
+		} else {
+			// 입력 값 저장
+			inputA = Number(inputObj.value);
+		}
+		console.log("입력1: "+inputA);
+		historyObj.innerHTML += inputA;
+		historyObj.scrollTop = historyObj.scrollHeight;
+	}
 	// clear function
-	var clear = function(){
+	function clear(){
 		inputObj.value = "0";
 	};
+	
+	// operation function
+	function operate(A, B){
+		var result;
+		switch(mode) {
+		case "plus":
+			result = A + B;
+			historyObj.innerHTML += " + " + B + " = " + result + "<br>";
+			break;
+		case "minus":
+			result = A - B;
+			historyObj.innerHTML += " - " + B + " = " + result + "<br>";
+			break;
+		case "multiple":
+			result = A * B;
+			historyObj.innerHTML += " * " + B + " = " + result + "<br>";
+			break;
+		case "divide":
+			result = A / B;
+			historyObj.innerHTML += " / " + B + " = " + result + "<br>";
+			break;
+		}
+		historyObj.scrollTop = historyObj.scrollHeight;
+		return result;
+	}
 	
 	for(var i=0; i<btArr.length; i++){
 		// 변수의 scope을 달리하기 위해 각각 함수 내의 변수로 바꿔준다
@@ -47,47 +98,46 @@ window.addEventListener("load", function(){
 	var plusObj = document.querySelector("#plus");
 	var minusObj = document.querySelector("#minus");
 	var equalObj = document.querySelector("#equal");
+	var mulObj = document.querySelector("#multiple");
+	var divObj = document.querySelector("#divide");
 	var clearObj = document.querySelector("#clear");
-	
-	var inputA;
-	var inputB;
-	var mode;
 	
 	// plus 버튼 클릭 이벤트
 	plusObj.addEventListener("click", function(){
-		// 입력 값 저장
-		inputA = parseInt(inputObj.value);
-		console.log("입력1: "+inputA);
-		
+		calculate();
 		mode = "plus";
 		clear();
 	});
 	
 	// minus 버튼 클릭 이벤트
 	minusObj.addEventListener("click", function(){
-		// 입력 값 저장
-		inputA = parseInt(inputObj.value);
-		console.log("입력1: "+inputA);
-		
+		calculate();
 		mode = "minus";
+		clear();
+	});
+	
+	// multiple 버튼 클릭 이벤트
+	mulObj.addEventListener("click", function(){
+		calculate();
+		mode = "multiple";
+		clear();
+	});
+	
+	// divide 버튼 클릭 이벤트
+	divObj.addEventListener("click", function(){
+		calculate();
+		mode = "divide";
 		clear();
 	});
 	
 	// equal 버튼 클릭 이벤트
 	equalObj.addEventListener("click", function(){
 		// 입력 값 저장
-		inputB = parseInt(inputObj.value);
+		inputB = Number(inputObj.value);
 		
 		// 연산 실행
 		var result;
-		switch(mode) {
-		case "plus":
-			result = inputA + inputB;
-			break;
-		case "minus":
-			result = inputA - inputB;
-			break;
-		}
+		result = operate(inputA, inputB);
 		
 		// 입력값이 부족할 경우
 		if(isNaN(result))
@@ -109,12 +159,15 @@ window.addEventListener("load", function(){
 		inputA = undefined;
 		inputB = undefined;
 		mode = undefined;
+		
+		historyObj.innerHTML += "<br>";
+		historyObj.scrollTop = historyObj.scrollHeight;
 	});
 });
 </script>
 </head>
 <body style="margin:20px">
-<div style="width:60%;">
+<div style="width:60%; max-width: 300px; float: left; margin-right: 20px;">
   <input type="text"><br>
   <div class="nums">
     <button>1</button><button>2</button><button>3</button><br>
@@ -125,8 +178,13 @@ window.addEventListener("load", function(){
   <button id="plus" >+</button><!-- 
 --><button id="minus">-</button><!-- 
 --><button id="equal">=</button><!-- 
+--><button id="multiple">*</button><!-- 
+--><button id="divide">/</button><!-- 
 --><button id="clear">C</button><!-- -->
 </div>
-
+<div>
+<h3>History</h3><hr>
+<div id="history" style="overflow: auto; height: 323px;"></div>
+</div>
 </body>
 </html>
