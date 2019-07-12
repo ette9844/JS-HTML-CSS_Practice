@@ -1,0 +1,36 @@
+*eclipse web project 프로젝트 복붙 
+properties>web project settings의 context root이름을 변경해주기
+
+add and remove
+web5(web4): web4로 부터 복붙한 프로젝트다
+
+----------------------------------------------------------------------------------------------------
+
+*형제 노드 찾기
+[CSS 선택자]
+a + b{} 	a바로 다음에 오는 형제 b
+a ~ b{}	a다음에 오는 모든 형제 b
+
+[자바스크립트]
+객체의 형제노드 찾기
+obj.nextSibling		: 바로 다음에 오는 형제 찾기
+obj.nextElementSibling	: 바로 다음에 나오는 element node인 형제 찾기
+
+ex)  <input>제목			// inputObj.nextSibling = 제목
+      <input><span>제목</span>	// inputObj.nextSibling = <span>제목</span>
+
+      <input> <span>제목</span>	// inputObj.nextSibling = ' ' (공백값)
+				// inputObj.nextElementSibling = <span>제목</span>
+
+--> 불편한 쓰임새 --> jQuery Library에서 이를 보완
+
+----------------------------------------------------------------------------------------------------
+
+*DOM에 요소 추가하기
+var e = document.createElement("option");	// <option> 추가
+var t = document.createTextNode("제주");	// 제주 추가
+a.appendChild(t);	// <option>제주</option>
+
+*DOM에 요소 제거하기
+obj.removeChild()
+
