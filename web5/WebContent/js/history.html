@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js/history.html</title>
+<script>
+window.addEventListener("load", function(){
+	var btObj = document.querySelector("button");
+	btObj.addEventListener("click", function(){
+		// history.back();	// 이전 화면으로
+		history.go(-1);	// 이전 화면으로
+		// history.go(1);	// 바로 앞페이지로
+	});
+});
+</script>
+</head>
+<body>
+<button>이전 페이지[뒤로가기]</button>
+</body>
+</html>
+
+<!-- history/location/window등 브라우저의 정보를 가지고 있는 객체를 BOM이라고 함 -->

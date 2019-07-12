@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가입</title>
+<style>
+input {
+	margin-top: 10px;
+	width: 100%;
+	min-width: 200px;
+	height: 30px;
+}
+input[type=number]{
+	width: 10%;
+}
+div {
+
+}
+button, input[type=reset], input[type=submit]{
+	cursor: pointer;
+	height: 40px;
+	color: #2BC63E;
+    background-color: #fff;
+    border-color: #2bc63e;
+    min-width: 100px;
+    margin: 0 0 0 0;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    white-space: nowrap;
+    font-size: 14px;
+    border-radius: 4px;
+}
+.final input{
+	max-width: 40%;
+}
+.final {
+	text-align: center;
+	width: 100%;
+	padding-top: 30px;
+	
+}
+</style>
+<script>
+window.addEventListener("load", function(){
+	var inputArr = document.querySelectorAll("input");
+	var dupChkObj = document.querySelector("#dupChkId");
+	var postNumObj = document.querySelector("#searchZip");
+	var submitObj = document.querySelector("input[type=submit]");
+	var resetObj = document.querySelector("input[type=reset]");
+	var idInputObj;
+	
+	// input 객체 구분
+	for(var i=0; i<inputArr.length; i++) {
+		if(inputArr[i].nextElementSibling == dupChkObj) {
+			idInputObj = inputArr[i];
+			console.log(idInputObj);
+		}
+	}
+	// 중복확인 버튼 클릭리스너
+	dupChkObj.addEventListener("click", function(){
+		var id = idInputObj.value;
+		if(id == "test"){
+			alert("이미 사용중인 ID 입니다.");
+		} else {
+			var submitObj = document.querySelector("input[type=submit]");
+			console.log(submitObj);
+			submitObj.style.display = 'inline';
+		}
+	});
+	// 우편 번호 찾기 버튼 클릭리스너
+	postNumObj.addEventListener("click", function(){
+		//http://www.artbank.go.kr/juso_new/newZipAddr_road.jsp
+		
+	});
+	
+});
+</script>
+</head>
+<body style="margin: 50px;">
+<div>
+  <span style="float:left;">아이디 입력</span>
+  <span style="float:right; font-size: 12px;">4자 이상의 영문 소문자 기준 0/15자</span><br>
+  <input type="text" placeholder="아이디를 입력하세요." style="width:78%;">
+  <button id="dupChkId" style="width:20%;">중복확인</button><br><br>
+</div>
+<div>
+  <span style="float:left;">비밀번호</span>
+  <span style="float:right; font-size: 12px;">영문소문자, 숫자 포함 6자리-12자리</span><br>
+  <input type="password" placeholder="사용할 비밀번호를 입력하세요."><br><br>
+    비밀번호 확인<br>
+  <input type="password" placeholder="사용할 비밀번호를 입력하세요."><br><br>
+</div>
+<div class="address">
+    주소<br>
+  <input type="number" readonly>-<input type="number" readonly>
+  <button id="searchZip">우편번호 검색</button><br>
+  <input type="text" readonly><br>
+  <input type="text" placeholder="상세 주소를 입력하세요."><br><br>
+</div>
+<div class="final">
+<input type="reset" value="취소">
+<input type="submit" value="가입완료" style="display: none;">
+</div>
+</body>
+</html>
