@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+span {
+  width: 200px;
+  margin-right: 30px;
+}
+form, h2 {
+  margin-left: 30px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+// window.addEventListener("load", function(){
+// jQuery(document).ready(function(){
+// $(document).ready(function(){
+$(function(){	// 네 문장 모두 같은 의미
+	alert("first");
+});
+
+window.addEventListener("load", function(){
+	alert("second");
+});	// second->first : load된 다음 ready가 된다
+</script>
+</head>
+<body>
+<h2>로그인</h2>
+<form>
+  <span>ID</span><input type="text" name="id"><br>
+  <span>비밀번호</span><input type="password" name="pwd"><br>
+  <button>로그인</button>
+  <button type="button">회원가입</button>
+</form>
+</body>
+</html>
