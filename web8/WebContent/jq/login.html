@@ -1,0 +1,64 @@
+<style>
+span {
+  width: 200px;
+  margin-right: 30px;
+}
+form, h2 {
+  margin-left: 30px;
+}
+input{
+  margin-right: 30px;
+  margin-bottom: 10px;
+}
+</style>
+<script>
+$(function(){
+	$("button[type=button]").click(function(){
+		// menu중 가입 메뉴 객체 찾기
+		// 페이지 검사 > 우클 > copy > copy selector
+		var $menuArr = $("header > nav > ul > li > a");
+		for(var i=0; i<$menuArr.length; i++){
+			var aObj = $menuArr[i];	// js 객체
+			if($(aObj).attr('href') =='join.html'){
+				// click 이벤트 강제 발생시키기
+				// *주의: jquery라이브러리를 사용하는 선언부가 두개 있으면 다른 페이지에 있는 객체의 trigger를 발생시키지 못함
+				// jquery lib 선언부가 한개여야 정상적으로 다른 페이지에 있는 객체의 trigger가 작동 됨
+				$(aObj).trigger('click');
+				break;
+			}
+		}
+		
+		// 다른 방법: join.html에 있는 코드와 동일 코드작성 -> 중복된 코드, 유지보수가 힘듦
+	});
+	
+	// 1) 버튼 클릭이벤트 먼저 발생
+	/*
+	$("button[type=submit]").click(function(){	// 버튼 이벤트 핸들러로 변경
+		alert("submit버튼에서 click 이벤트 발생");
+		// $("form").attr('action', '../a.jsp');
+		// $("form").submit();	// submit 함수 내부에서 submit 함수 호출 => 무한반복
+		// return false;	// 기본 이벤트 핸들러 막기
+		
+		// 버튼 이벤트 핸들러에서 작동하는 방식으로 하고 싶으면 기본 핸들러를 막아줘야한다
+		// but 유효성 검사 팝업이 안뜸
+		// required 속성을 확인하고 입력되지 않으면 submit 이벤트로 가지 않음
+		// 기본 이벤트 핸들러가 하는 일: form의 submit 이벤트를 강제 발생시킨다
+	});
+	*/
+	
+	// 2) form에서 submit 이벤트가 자동 발생
+	$("form").submit(function(){
+		alert("form에서 submit 이벤트 발생")
+		$("form").attr('action', '../a.jsp');
+		// 기본 이벤트 핸들러가 하는 일: form의 action 속성값에 해당하는 url을 요청
+		// action 속성값이 없으면 지금 사용중인 url을 요청한다
+	});
+});
+</script>
+<h2>로그인</h2>
+<form>
+  <span>ID</span><input type="text" name="id" required placeholder="ID를 입력해주세요"><br>
+  <span>비밀번호</span><input type="password" name="pwd" required placeholder="비밀번호를 입력해주세요"><br>
+  <button type="submit">로그인</button>	<!-- form tag내부 type을 설정하지 않은 버튼: submit -->
+  <button type="button">회원가입</button>
+</form>

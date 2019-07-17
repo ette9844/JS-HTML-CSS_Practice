@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq/ajax.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$("#bt1").click(function(){
+		$.ajax({
+			url: '../a.jsp',
+			method: 'GET',
+			success: function(data){
+				// data = 응답결과 입니다.
+				// 내용을 비우고 data의 내용으로 채우기 (+method chaining)
+				$("div").empty().html(data);
+				// 요청 결과가 올때까지 다른 작업을 할 수 있다: 비동기 일처리
+			},
+			error: function(){
+				console.log("응답 실패");
+			}
+		});
+	});
+	
+	$("#bt2").click(function(){
+		$.ajax({
+			// ajax는 같은 도메인 페이지 요청만 가능
+			// 다른 도메인에 있는 페이지 요청은 불가 -> 응답 없음
+			// 이는 보안 때문에 그렇다 (보안 정책 위배): has been blocked by CORS policy: No 'Access-Control-Allow-Origin'
+			url: 'http://192.168.30.102:8080/web8/a.jsp',
+			method: 'GET',
+			success: function(data){
+				// data = 응답결과 입니다.
+				// 내용을 비우고 data의 내용으로 채우기 (+method chaining)
+				$("div").empty().html(data);
+				// 요청 결과가 올때까지 다른 작업을 할 수 있다: 비동기 일처리
+			}
+		});
+	});
+});
+</script>
+</head>
+<body>
+<button id="bt1">ajax요청</button>
+<!-- ajax요청과는 달리 일반 요청은 서버가 응답할 때까지 기다려야 함 -->
+<!-- +기존 화면을 클리어 시키고 결과만 보여줌: 기본 렌더링 -->
+<form action="../a.jsp"><button>일반요청</button></form>
+<button id="bt2">ajax로 다른도메인 요청</button>
+<div></div>
+<input type="text">
+</body>
+</html>

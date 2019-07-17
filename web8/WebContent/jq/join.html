@@ -18,9 +18,9 @@ input[readonly]{
 button, input[type=reset], input[type=submit]{
 	cursor: pointer;
 	height: 40px;
-	color: #2BC63E;
+	color: #0033cc;
     background-color: #fff;
-    border-color: #2bc63e;
+    border-color: #0033cc;
     min-width: 100px;
     margin: 0 0 0 0;
     text-align: center;
@@ -70,14 +70,14 @@ span+span{
     line-height: 16px;
     padding: 8px;
     margin: 0px;
-    border: 2px solid #2bc63e;
+    border: 2px solid #0033cc;
     box-sizing: border-box;
     float: left;
 }
 .search_pop button {
     width: 20%;
     height: 36px;
-    background-color: #2bc63e;
+    background-color: #0033cc;
     font-size: 14px;
     color: #fff;
     font-weight: bold;
@@ -87,7 +87,7 @@ span+span{
     padding: 0px;
     margin: 0px;
     border: 0px;
-    border: 2px solid #2bc63e;
+    border: 2px solid #0033cc;
     box-sizing: border-box;
     float: left;
 }
@@ -121,7 +121,6 @@ table tr th, td{
 	padding-right: 30px;
 }
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(function(){
 	var $idObj = $("input[name=id]");
@@ -129,10 +128,8 @@ $(function(){
 	
 	// id 입력란에 focus이벤트 감시: focus되엇을 시 submit 버튼 숨기기
 	$idObj.focus(function(){
-		console.log("포커스");
-		//$submitObj.css('display', 'none');
-		$submitObj.hide(500);	// 작동 x
-	});
+		$submitObj.hide();
+	});	
 	
 	var $dupChkObj = $("#dupChkId");
 	// 중복확인 버튼 클릭리스너
@@ -149,7 +146,7 @@ $(function(){
 		} else {
 			var $submitObj = $("input[type=submit]");
 			//$submitObj.css('display', 'inline');
-			$submitObj.show(500);
+			$submitObj.show();
 		}
 		
 	});
@@ -159,15 +156,56 @@ $(function(){
 	// 우편 번호 찾기 버튼 클릭리스너
 	$postNumObj.click(function(){
 		// 우편 번호창 보여주기
-		$postDiv.show(500);
+		$postDiv.show();
 	});
 	
 	// 우편 번호창에서 행(tr) 클릭리스너 첫 행 제외=tr:not(:nth-child(1))
 	var $trObj = $("#divSearchZip>div>table tr:not(:first-child)");
 	var $postObj = $("input[name=postNum]");
 	var $addr1Obj = $("input[name=addr1]");
-	// 각 tr마다 각각 동작하는 클릭 리스너 작성
-	$trObj.click(function(){
+	
+	//#divSearchZip의 하위요소로 form객체 찾기
+	$("#divSearchZip form").submit(function(){
+		// ../b.jsp를 form 요청 or ajax 요청?
+		// ajax -> 화면 클리어 x
+		$.ajax({
+			url: '../b.jsp',
+			method: 'GET',
+			/*
+			success: function(data){
+				// 응답 결과를 "#divSearchZip>div>table의 inner html로 추가
+				// $("#divSearchZip>div>table").html(data);
+				// 서버가 응답하는 내용이 단순해지면 client에서 할일이 늘어남
+				// 서버가 응답하는 내용이 길어지면 시간은 조금 더 걸리지만 client가 하는 일이 적어짐
+				// console.log(data);	// 문자열 값
+				var jsonObjArr = JSON.parse(data);	// json객체 형태로 변환 (javascript array)
+				//console.log(jsonObjArr);	// 배열 []
+				var trs = "";
+				for(var i=0; i<jsonObjArr.length; i++){
+					var jsonObj = jsonObjArr[i];	// 객체 {}
+					// console.log(jsonObj.d1 + ", " + jsonObj.d2);
+					trs += "<tr><td>"+jsonObj.d1+"</td><td>"+jsonObj.d2+"</td></tr>";
+				}
+				$("#divSearchZip>div>table").html(trs);
+			}
+		*/
+			success: function(jsonObjArr){
+				var trs = "";
+				for(var i=0; i<jsonObjArr.length; i++){
+					var jsonObj = jsonObjArr[i];	// 객체 {}
+					// console.log(jsonObj.d1 + ", " + jsonObj.d2);
+					trs += "<tr><td>"+jsonObj.d1+"</td><td>"+jsonObj.d2+"</td></tr>";
+				}
+				$("#divSearchZip>div>table").html(trs);
+			}
+		});
+		return false;
+	});
+	
+	// 동적으로 추가 된 tr에도 클릭 이벤트를 등록하기 위해 on함수 사용
+	$("#divSearchZip>div>table").on("click", 
+			"tr:not(:first-child)", 
+			function(){
 		var children = $(this).children();
 		var postnum = children.eq(0).html();
 		var addr1 = children.eq(1).html();
@@ -178,7 +216,7 @@ $(function(){
 		$addr1Obj.val(addr1);
 		
 		// 우편 번호창 안보이게 하기
-		$postDiv.hide(500);
+		$postDiv.hide();
 	});
 	
 	

@@ -47,13 +47,12 @@ span+span{
 	color: red;
 	display: none;
 }
-/* 우편번호 창 */
 #divSearchZip{
 	width: 500px; 
 	height: 400px; 
 	position: absolute;
 	top: 100px; 
-	left: 150px; 
+	left: 200px; 
 	border: 1px solid;
 	background-color: #f5f5f5;
 	display: none;
@@ -115,85 +114,79 @@ table tr th, td{
     border-bottom: 1px solid #e0e0e0;
     text-align: center;
 }
-.full{
-	max-width: 800px;
-	margin: 30px 30px 30px 30px;
-	padding-right: 30px;
-}
 </style>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-$(function(){
-	var $idObj = $("input[name=id]");
-	var $submitObj = $("input[type=submit]");
+window.addEventListener("load", function(){
+	var inputArr = document.querySelectorAll("input");
+	var dupChkObj = document.querySelector("#dupChkId");
+	var postNumObj = document.querySelector("#searchZip");
+	var idInputObj = document.querySelector("input[name=id]");
+	var submitObj = document.querySelector("input[type=submit]");
+	var resetObj = document.querySelector("input[type=reset]");
+	var passInputObj = document.querySelector("input[name=pass]");
+	var passChkObj = document.querySelector("input[name=passChk]");
+	var postObj = document.querySelector("input[name=postNum]");
+	var addr1Obj = document.querySelector("input[name=addr1]");
+	var addr2Obj = document.querySelector("input[name=addr2]");
+	var postDiv = document.querySelector("#divSearchZip");
 	
 	// id 입력란에 focus이벤트 감시: focus되엇을 시 submit 버튼 숨기기
-	$idObj.focus(function(){
-		console.log("포커스");
-		//$submitObj.css('display', 'none');
-		$submitObj.hide(500);	// 작동 x
+	idInputObj.addEventListener("focus", function(){
+		submitObj.style.display = 'none';
 	});
-	
-	var $dupChkObj = $("#dupChkId");
 	// 중복확인 버튼 클릭리스너
-	$dupChkObj.click(function(){
-		var id = $idObj.val();
+	dupChkObj.addEventListener("click", function(){
+		var id = idInputObj.value;
 		if(id.trim().length == 0){
 			alert("ID를 입력해주세요.");
 			// focus 이동
-			$idObj.focus();
+			idInputObj.focus();
 		} else if(id == "test"){
 			alert("이미 사용중인 ID 입니다.");
 		} else if(id.trim().length < 4){
 			alert("4자 이상의 영문 소문자로 id를 구성해주세요.")
 		} else {
-			var $submitObj = $("input[type=submit]");
-			//$submitObj.css('display', 'inline');
-			$submitObj.show(500);
+			var submitObj = document.querySelector("input[type=submit]");
+			console.log(submitObj);
+			submitObj.style.display = 'inline';
 		}
 		
 	});
-	
-	var $postNumObj = $("#searchZip");
-	var $postDiv = $("#divSearchZip");
 	// 우편 번호 찾기 버튼 클릭리스너
-	$postNumObj.click(function(){
+	postNumObj.addEventListener("click", function(){
 		// 우편 번호창 보여주기
-		$postDiv.show(500);
+		postDiv.style.display = "block";
 	});
 	
-	// 우편 번호창에서 행(tr) 클릭리스너 첫 행 제외=tr:not(:nth-child(1))
-	var $trObj = $("#divSearchZip>div>table tr:not(:first-child)");
-	var $postObj = $("input[name=postNum]");
-	var $addr1Obj = $("input[name=addr1]");
-	// 각 tr마다 각각 동작하는 클릭 리스너 작성
-	$trObj.click(function(){
-		var children = $(this).children();
-		var postnum = children.eq(0).html();
-		var addr1 = children.eq(1).html();
-		
-		// 클릭한 요소의 값을 메인 페이지에 반영
-		console.log(postnum + " : " + addr1);
-		$postObj.val(postnum);
-		$addr1Obj.val(addr1);
-		
-		// 우편 번호창 안보이게 하기
-		$postDiv.hide(500);
-	});
-	
+	// 우편 번호창에서 행(tr) 클릭리스너									첫 행 제외=tr:not(:nth-child(1))
+	var trObjArr = document.querySelectorAll("#divSearchZip>div>table tr:not(:first-child)");
+	for(var i=0; i<trObjArr.length; i++){
+		// 각각 tr에 대한 클릭 리스너 생성
+		(function(j){
+			var trObj = trObjArr[j];
+			trObj.addEventListener("click", function(){
+				// 클릭한 요소의 값을 메인 페이지에 반영
+				console.log(trObj.children[0].innerHTML + " : " + trObj.children[1].innerHTML);
+				postObj.value = trObj.children[0].innerHTML;
+				addr1Obj.value = trObj.children[1].innerHTML;
+				// 우편 번호창 안보이게 하기
+				postDiv.style.display = "none";
+			});
+		})(i);
+	}
 	
 	// 취소 버튼 클릭리스너
-	var $resetObj = $("input[type=reset]");
-	$resetObj.click(function(){
+	resetObj.addEventListener("click", function(){
 		// input value 모두 클리어
-		var $inputObj = $("input");
-		if($inputObj.val() != "취소" && $inputObj.val() != "가입완료") {
-			$inputObj.val("");
+		var inputArr = document.querySelectorAll("input");
+		for(var i=0; i<inputArr.length; i++){ 
+			if(inputArr[i].value != "취소" && inputArr[i].value != "가입완료") {
+				inputArr[i].value = "";
+			}
 		}
 	});
 });
 </script>
-<div class="full">
 <form>
 <div>
   <span>아이디 입력</span>
@@ -247,5 +240,4 @@ $(function(){
   	<tr><td>30115</td><td>대전광역시 유성구 유성온천역 유성12로 29</td></tr>
   	</table>
   </div>
-</div>
 </div>

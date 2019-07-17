@@ -1,0 +1,28 @@
+<!-- 로그인.html이 독립적으로 쓰이는 페이지가 아닌 layout.html의 section태그에 들어가므로 
+head / body태그를 삭제해도 된다 -->
+<style>
+span {
+  width: 200px;
+  margin-right: 30px;
+}
+form, h2 {
+  margin-left: 30px;
+}
+</style>
+<script>
+window.addEventListener("load", function(){
+	var loginObj = document.querySelector("form>button");
+	var enrolObj = document.querySelector("form>button[type=button]");
+	
+	enrolObj.addEventListener("click", function(){
+		
+	});
+});
+</script>
+<h2>로그인</h2>
+<form>
+  <span>ID</span><input type="text" name="id"><br>
+  <span>비밀번호</span><input type="password" name="pwd"><br>
+  <button>로그인</button>
+  <button type="button">회원가입</button>
+</form>
