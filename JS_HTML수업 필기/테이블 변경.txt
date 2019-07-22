@@ -1,0 +1,18 @@
+외래키 추가
+
+ALTER TABLE customer
+ADD CONSTRAINT fk_buildingno
+FOREIGN KEY(buildingno) REFERENCES post(buildingno);
+
+까마귀발 : 1대 다 관계 표현
+
+필수참여: 동그라미 없음
+
+선택참여: 동그라미
+
+1. >--------o
+2. >o--------
+3. >---------
+4. >o-------o
+s
+2번이 맞음 customer의 buildingno에 NOT NULL 제약조건이 없기 아니기 때문
